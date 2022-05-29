@@ -3,6 +3,7 @@ namespace Services.Posts
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Data;
+    using Data.Models;
     using Microsoft.EntityFrameworkCore;
     using ViewModels.Post;
 
@@ -13,6 +14,22 @@ namespace Services.Posts
         public PostService(ApplicationDbContext data)
         {
             this.data = data;
+        }
+
+        public async Task<int> CreateAsync(CreatePostInputModel model, string userId)
+        {
+            var post = new Post()
+            {
+                UserId = userId,
+                Title = model.Title,
+                Text = model.Text,
+                CategoryId = model.CategoryId
+            };
+
+            await this.data.Posts.AddAsync(post);
+            await this.data.SaveChangesAsync();
+
+            return post.Id;
         }
 
         public async Task<IEnumerable<PostViewModel>> GetPosts()

@@ -6,5 +6,7 @@ namespace Services.Posts
     public interface IPostService
     {
         Task<IEnumerable<PostViewModel>> GetPosts();
+
+        Task<int> CreateAsync(CreatePostInputModel model, string userId);
     }
 }
