@@ -9,6 +9,6 @@ public class ApplicationUser : IdentityUser
         this.Posts = new HashSet<Post>();
     }
 
-    public ICollection<Post> Posts { get; set; }
+    public virtual ICollection<Post> Posts { get; set; }
 
 }

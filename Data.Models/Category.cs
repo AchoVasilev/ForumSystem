@@ -23,8 +23,8 @@ namespace Data.Models
         [ForeignKey(nameof(Image))]
         public string ImageId { get; set; }
 
-        public Image Image { get; set; }
+        public virtual Image Image { get; set; }
 
-        public ICollection<Post> Posts { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
     }
 }
